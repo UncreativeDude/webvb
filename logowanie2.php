@@ -10,7 +10,7 @@
     $password = $_GET["pwd"];
 
     // Create a connection
-    $conn = new mysqli($bazaAdres, $bazaLogin, $bazaHaslo, $bazaNazwa);
+    $conn = new mysqlimysqli_connect('artkoc7548.mysql.dhosting.pl', 'seey3m_michalak', 'thi3eexohY3s', 'ange9a_michalak');;
 
     // Check connection
     if ($conn->connect_error) {
