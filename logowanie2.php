@@ -1,18 +1,47 @@
 <?php
-	include 'konfiguracja.php';
-	
-	$haslo = hash("sha256",$_GET["pwd"]);
-	mysql_connect($bazaAdres,$bazaLogin,$basaHaslo);
-	mysql_select_db($bazaNazwa);
-	$rezultat = mysql_query("SELECT id FROM uzytkownicy WHERE login='".$_GET["lgn"]."' AND haslo='".$haslo."'");
-	if(mysql_num_rows($rezultat) == 1) {
-		mysql_close();
-		setcookie('login', $_GET["lgn"], time()+3600*24);
-		setcookie('haslo', $haslo, time()+3600*24);
-		header("Location: menu.php");
-		die();
-	}
-	mysql_close();
-	header("Location: logowanie.php");
-	die();
+    include 'konfiguracja.php';
+
+    if (!isset($_GET["lgn"]) || !isset($_GET["pwd"])) {
+        header("Location: logowanie.php");
+        exit();
+    }
+
+    $login = $_GET["lgn"];
+    $password = $_GET["pwd"];
+
+    // Create a connection
+    $conn = new mysqli($bazaAdres, $bazaLogin, $bazaHaslo, $bazaNazwa);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Use prepared statements to prevent SQL injection
+    $stmt = $conn->prepare("SELECT id, haslo FROM uzytkownicy WHERE login = ?");
+    $stmt->bind_param("s", $login);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows === 1) {
+        $stmt->bind_result($id, $hashed_password);
+        $stmt->fetch();
+
+        // Verify password
+        if (password_verify($password, $hashed_password)) {
+            setcookie('login', $login, time() + 86400, "/", "", false, true);
+            setcookie('haslo', $hashed_password, time() + 86400, "/", "", false, true);
+            
+            header("Location: menu.php");
+            exit();
+        }
+    }
+
+    // Close statement and connection
+    $stmt->close();
+    $conn->close();
+
+    // Redirect to login page if authentication fails
+    header("Location: logowanie.php");
+    exit();
 ?>
