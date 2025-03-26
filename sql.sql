@@ -8,5 +8,5 @@ CREATE TABLE ab_uzytkowniczy (
 CREATE TABLE maszyny (
     id INT AUTO_INCREMENT PRIMARY KEY,
     idUzytkownika INT NOT NULL,
-    nazwaMaszyny VARCHAR(50) NOT NULL,
+    nazwaMaszyny VARCHAR(100) NOT NULL,
 )
