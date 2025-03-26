@@ -1,6 +1,6 @@
 <?php
 	include 'konfiguracja.php';
-	$conn = new mysqli($bazaAdres, $bazaLogin, $basaHaslo, $bazaNazwa);
+	$conn = new mysqli('artkoc7548.mysql.dhosting.pl', 'seey3m_michalak', 'thi3eexohY3s', 'ange9a_michalak');
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	}
