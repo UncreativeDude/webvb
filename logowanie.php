@@ -3,16 +3,16 @@
 	<head>
 		<?php
 			include 'konfiguracja.php';
-			mysqli_connect($bazaAdres,$bazaLogin,$basaHaslo);
-			mysqli_select_db($bazaNazwa);
-			$sqli = "SELECT id FROM uzytkownicy WHERE login='".$_COOKIE['login']."' && haslo='".$_COOKIE['haslo']."'";
-			$rezultat = mysqli_query($sql);
+			mysql_connect($bazaAdres,$bazaLogin,$basaHaslo);
+			mysql_select_db($bazaNazwa);
+			$sql = "SELECT id FROM uzytkownicy WHERE login='".$_COOKIE['login']."' && haslo='".$_COOKIE['haslo']."'";
+			$rezultat = mysql_query($sql);
 			if(mysql_num_rows($rezultat) == 1) {
-				mysqli_close();
+				mysql_close();
 				header("Location: menu.php");
 				die();
 			}
-			mysqli_close();
+			mysql_close();
 		?>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
