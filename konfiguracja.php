@@ -1,7 +1,7 @@
 <?php
-	$bazaAdres = "michalak.lab.pc.pl.mysql.dhosting.pl";
-	$bazaLogin = "seey3m_michalak";
-	$basaHaslo = "thi3eexohY3s";
-	$bazaNazwa = "ange9a_michalak";
+	$bazaAdres = "localhost";
+	$bazaLogin = "root";
+	$basaHaslo = "1234";
+	$bazaNazwa = "vbox";
 	$prawidloweHaslo = hash("sha256","1234");
 ?>
