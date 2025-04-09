@@ -27,8 +27,8 @@
 	//	exec("VBoxManage modifyvm '".$_GET["nazwa"]."' --nic2 ".$_GET["karta2"]." --nictype2 82540EM --cableconnected1 on");
 	//	exec("VBoxManage modifyvm '".$_GET["nazwa"]."' --nic3 ".$_GET["karta3"]." --nictype3 82540EM --cableconnected1 on");
 	//	exec("VBoxManage modifyvm '".$_GET["nazwa"]."' --nic4 ".$_GET["karta4"]." --nictype4 82540EM --cableconnected1 on");
-		//exec("VBoxManage modifyvm '".$_GET["nazwa"]."' --vrde on --vrdeport ".$_GET["pulpitPort"]." --vrdeaddress ".$_GET["pulpitIP"]);
-		//exec("VBoxManage startvm '".$_GET["nazwa"]."' --type headless");
+	//	exec("VBoxManage modifyvm '".$_GET["nazwa"]."' --vrde on --vrdeport ".$_GET["pulpitPort"]." --vrdeaddress ".$_GET["pulpitIP"]);
+	//	exec("VBoxManage startvm '".$_GET["nazwa"]."' --type headless");
 		header("Location: administracja3.php");
 		die();
 	}
